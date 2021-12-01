@@ -51,7 +51,7 @@ There is a request from an HR company to create a process that would help with p
 	- Dependencies (Windows - Legacy)
 		- UiPath.DocumentUnderstanding.ML.Activities = 1.9.1
 		- UiPath.Excel.Activities = 2.11.4
-		- UiPath.IntelligenOCR.Activities = 5.1.0-preview
+		- UiPath.IntelligentOCR.Activities = 5.1.0-preview
 		- UiPath.Mail.Activities = 1.12.2
 		- UiPath.OmniPage.Activites = 1.8.0
 		- UiPath.System.Activities = 21.10.2
@@ -61,7 +61,7 @@ There is a request from an HR company to create a process that would help with p
 - To run the application, you must have UiPath Studio and Outlook installed. 
 - Also, the above dependencies must be met. To install packages, use the dedicated tab from the main application: *Manage Packages*. 
 - Most packages are installed. 
-- You will need to install the following packages: *UiPath.DocumentUnderstanding.ML.Activities*, *UiPath.IntelligenOCR.Activities* & *UiPath.OmniPage.Activites*.
+- You will need to install the following packages: *UiPath.DocumentUnderstanding.ML.Activities*, *UiPath.IntelligentOCR.Activities* & *UiPath.OmniPage.Activites*.
 - Now, all you have to do is run the **Main.xaml** file. 
 - Select the desired config file. If you do not have one, my recommendation is to use the default one from project folder (**./Data/Config.xlsx**). Change the email address used in Outlook in the config file.
 
