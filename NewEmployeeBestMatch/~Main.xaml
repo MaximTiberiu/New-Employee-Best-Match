@@ -147,7 +147,7 @@
                       <av:Size x:Key="ShapeSize">200,52.8</av:Size>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:MessageBox ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" Caption="File not found :(" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;The specified path was nout found!&quot;]">
+                  <ui:MessageBox ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" Buttons="Ok" Caption="File not found :(" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;The specified path was not found!&quot;]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
