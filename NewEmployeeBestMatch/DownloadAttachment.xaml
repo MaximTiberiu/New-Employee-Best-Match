@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1039.2,651.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>928,818.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DownloadAttachment_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -78,7 +78,6 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="DownloadAttachment" sap:VirtualizedContainerService.HintSize="836,586.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -87,7 +86,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[mail.Attachments.Any]" sap:VirtualizedContainerService.HintSize="794.4,493.6" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[mail.Attachments.Any]" DisplayName="If attachments exist" sap:VirtualizedContainerService.HintSize="794.4,493.6" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="375.2,334.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
@@ -96,14 +95,10 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" FolderPath="[downloadFolderPath]" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_1" Message="[mail]" OverwriteExisting="False" />
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ReplyOutlookMail workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReplyOutlookMail.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ReplyOutlookMail - Confirmation" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ReplyOutlookMail.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="snm:MailMessage" x:Key="mail">
-                <mva:VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="mail" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="replyMessage">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;replyMessageConfirmation&quot;).ToString" />
-              </InArgument>
+              <InArgument x:TypeArguments="snm:MailMessage" x:Key="mail">[mail]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="replyMessage">[Config("replyMessageConfirmation").ToString]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
@@ -115,14 +110,10 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ReplyOutlookMail workflow" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ReplyOutlookMail.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ReplyOutlookMail - Error" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ReplyOutlookMail.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="snm:MailMessage" x:Key="mail">
-                <mva:VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="mail" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="replyMessage">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;replyMessageNoAttachment&quot;).ToString" />
-              </InArgument>
+              <InArgument x:TypeArguments="snm:MailMessage" x:Key="mail">[mail]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="replyMessage">[Config("replyMessageNoAttachment").ToString]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
