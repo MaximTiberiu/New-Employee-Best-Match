@@ -1,13 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DocumentUnderstanding" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:p1="http://schemas.uipath.com/workflow/activities/intelligentocr/classification" xmlns:p2="http://schemas.uipath.com/workflow/activities/document-processing-contracts/classification" xmlns:p3="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p4="http://schemas.uipath.com/workflow/activities/intelligentocr/extraction" xmlns:p5="http://schemas.uipath.com/workflow/activities/document-processing-contracts/extraction" xmlns:p6="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:p7="http://schemas.uipath.com/workflow/activities/document-processing-contracts/taxonomy" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uoa="clr-namespace:UiPath.OmniPage.Activities;assembly=UiPath.OmniPage.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DocumentUnderstanding" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:p1="http://schemas.uipath.com/workflow/activities/intelligentocr/classification" xmlns:p2="http://schemas.uipath.com/workflow/activities/document-processing-contracts/classification" xmlns:p3="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p4="http://schemas.uipath.com/workflow/activities/intelligentocr/extraction" xmlns:p5="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:p6="http://schemas.uipath.com/workflow/activities/document-processing-contracts/extraction" xmlns:p7="http://schemas.uipath.com/workflow/activities/document-processing-contracts/taxonomy" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uoa="clr-namespace:UiPath.OmniPage.Activities;assembly=UiPath.OmniPage.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="documentPath" Type="InArgument(x:String)" />
     <x:Property Name="dataSet" Type="OutArgument(sd:DataSet)" />
+    <x:Property Name="dataTable" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>954.4,2876.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>928,2726.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DocumentUnderstanding_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -62,7 +63,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -96,7 +97,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -105,22 +106,22 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="DocumentUnderstanding" sap:VirtualizedContainerService.HintSize="552,2812" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DocumentUnderstanding" sap:VirtualizedContainerService.HintSize="519.2,2661.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="p7:DocumentTaxonomy" Name="taxonomy" />
       <Variable x:TypeArguments="x:String" Name="documentText" />
       <Variable x:TypeArguments="p3:Document" Name="DOM" />
-      <Variable x:TypeArguments="p6:ClassificationResult[]" Name="classificationResult" />
-      <Variable x:TypeArguments="p6:ExtractionResult" Name="extractionResult" />
-      <Variable x:TypeArguments="p6:ExtractionResult" Name="validatedExtractionResult" />
+      <Variable x:TypeArguments="p5:ClassificationResult[]" Name="classificationResult" />
+      <Variable x:TypeArguments="p5:ExtractionResult" Name="extractionResult" />
+      <Variable x:TypeArguments="p5:ExtractionResult" Name="validatedExtractionResult" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p:LoadTaxonomy DisplayName="Load Taxonomy" sap:VirtualizedContainerService.HintSize="510.4,105.6" sap2010:WorkflowViewState.IdRef="LoadTaxonomy_1" Taxonomy="[taxonomy]" />
-    <p:DigitizeDocument ApplyOcrMigrated="True" ApplyOcrOnPdf="Auto" DegreeOfParallelism="-1" DisplayName="Digitize Document" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" ForceApplyOCR="False" sap:VirtualizedContainerService.HintSize="510.4,297.6" sap2010:WorkflowViewState.IdRef="DigitizeDocument_1">
+    <p:LoadTaxonomy DisplayName="Load Taxonomy" sap:VirtualizedContainerService.HintSize="477.6,105.6" sap2010:WorkflowViewState.IdRef="LoadTaxonomy_1" Taxonomy="[taxonomy]" />
+    <p:DigitizeDocument ApplyOcrMigrated="True" ApplyOcrOnPdf="Auto" DegreeOfParallelism="-1" DisplayName="Digitize Document" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" ForceApplyOCR="False" sap:VirtualizedContainerService.HintSize="477.6,297.6" sap2010:WorkflowViewState.IdRef="DigitizeDocument_1">
       <p:DigitizeDocument.OCREngine>
         <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
           <ActivityFunc.Argument>
@@ -130,7 +131,7 @@
         </ActivityFunc>
       </p:DigitizeDocument.OCREngine>
     </p:DigitizeDocument>
-    <p1:ClassifyDocumentScope ClassificationResults="[classificationResult]" DisplayName="Classify Document Scope" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" sap:VirtualizedContainerService.HintSize="510.4,441.6" sap2010:WorkflowViewState.IdRef="ClassifyDocumentScope_1" Taxonomy="[taxonomy]" TaxonomyConfiguration="{}{&quot;TaxonomyMappings&quot;:{&quot;UI9083082d15264eb1bfbfb77950299542&quot;:{&quot;DocumentTypeMappings&quot;:{&quot;RPAProjectCompany.HR.JobDescription&quot;:{&quot;OriginalDocumentTypeId&quot;:&quot;RPAProjectCompany.HR.JobDescription&quot;,&quot;ClassifierDocumentTypeId&quot;:null,&quot;IsDocumentTypeIdMapped&quot;:true},&quot;RPAProjectCompany.HR.CV&quot;:{&quot;OriginalDocumentTypeId&quot;:&quot;RPAProjectCompany.HR.CV&quot;,&quot;ClassifierDocumentTypeId&quot;:null,&quot;IsDocumentTypeIdMapped&quot;:true}}}},&quot;ClassifierMinimumConfidence&quot;:{&quot;UI9083082d15264eb1bfbfb77950299542&quot;:&quot;0&quot;},&quot;DocumentTypesByPersistenceId&quot;:{&quot;UI9083082d15264eb1bfbfb77950299542&quot;:[]}}">
+    <p1:ClassifyDocumentScope ClassificationResults="[classificationResult]" DisplayName="Classify Document Scope" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" sap:VirtualizedContainerService.HintSize="477.6,441.6" sap2010:WorkflowViewState.IdRef="ClassifyDocumentScope_1" Taxonomy="[taxonomy]" TaxonomyConfiguration="{}{&quot;TaxonomyMappings&quot;:{&quot;UI9083082d15264eb1bfbfb77950299542&quot;:{&quot;DocumentTypeMappings&quot;:{&quot;RPAProjectCompany.HR.JobDescription&quot;:{&quot;OriginalDocumentTypeId&quot;:&quot;RPAProjectCompany.HR.JobDescription&quot;,&quot;ClassifierDocumentTypeId&quot;:null,&quot;IsDocumentTypeIdMapped&quot;:true},&quot;RPAProjectCompany.HR.CV&quot;:{&quot;OriginalDocumentTypeId&quot;:&quot;RPAProjectCompany.HR.CV&quot;,&quot;ClassifierDocumentTypeId&quot;:null,&quot;IsDocumentTypeIdMapped&quot;:true}}}},&quot;ClassifierMinimumConfidence&quot;:{&quot;UI9083082d15264eb1bfbfb77950299542&quot;:&quot;0&quot;},&quot;DocumentTypesByPersistenceId&quot;:{&quot;UI9083082d15264eb1bfbfb77950299542&quot;:[]}}">
       <p1:ClassifyDocumentScope.Classifiers>
         <p1:KeywordBasedClassifier HumanValidatedData="{x:Null}" LearningData="{x:Null}" DisplayName="Keyword Based Classifier" sap:VirtualizedContainerService.HintSize="233.6,115.2" sap2010:WorkflowViewState.IdRef="KeywordBasedClassifier_1" LearningFilePath="[Config(&quot;keywordDocumentPath&quot;).ToString]" PersistenceId="UI9083082d15264eb1bfbfb77950299542">
           <p1:KeywordBasedClassifier.ClassifierResult>
@@ -171,13 +172,13 @@
         </p1:KeywordBasedClassifier>
       </p1:ClassifyDocumentScope.Classifiers>
     </p1:ClassifyDocumentScope>
-    <p4:DataExtractionScope DocumentTypeId="{x:Null}" ClassificationResult="[classificationResult(0)]" DisplayName="Data Extraction Scope" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" ExtractionResult="[extractionResult]" FormatValuesIfPossible="True" sap:VirtualizedContainerService.HintSize="510.4,490.4" sap2010:WorkflowViewState.IdRef="DataExtractionScope_1" Taxonomy="[taxonomy]" TaxonomyConfiguration="{}{&quot;TaxonomyMappings&quot;:{&quot;UI5799653934564981aba65bacfbebb5a4&quot;:{&quot;DocumentTypeMappings&quot;:{&quot;RPAProjectCompany.HR.JobDescription&quot;:{&quot;FieldMappings&quot;:{&quot;RPAProjectCompany.HR.JobDescription.companyName&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.companyName&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.Email&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.Email&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.CUI&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.CUI&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.jobID&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.jobID&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.deadlineDate&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.deadlineDate&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.experience&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.experience&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.skills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.skills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.education&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.education&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.optionalSkills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.optionalSkills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true}},&quot;ExtractorDocumentTypeId&quot;:null},&quot;RPAProjectCompany.HR.CV&quot;:{&quot;FieldMappings&quot;:{&quot;RPAProjectCompany.HR.CV.name&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.name&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.phone&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.phone&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.email&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.email&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.website&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.website&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.jobID&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.jobID&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.experience&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.experience&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.skills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.skills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.education&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.education&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.optionalSkills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.optionalSkills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true}},&quot;ExtractorDocumentTypeId&quot;:null}}}},&quot;ExtractorMinimumConfidence&quot;:{&quot;UI5799653934564981aba65bacfbebb5a4&quot;:&quot;0&quot;},&quot;ExtractorsAliases&quot;:{},&quot;DocumentTypeOptionsByExtractor&quot;:{&quot;UI5799653934564981aba65bacfbebb5a4&quot;:[]}}">
+    <p4:DataExtractionScope DocumentTypeId="{x:Null}" ClassificationResult="[classificationResult(0)]" DisplayName="Data Extraction Scope" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" ExtractionResult="[extractionResult]" FormatValuesIfPossible="True" sap:VirtualizedContainerService.HintSize="477.6,490.4" sap2010:WorkflowViewState.IdRef="DataExtractionScope_1" Taxonomy="[taxonomy]" TaxonomyConfiguration="{}{&quot;TaxonomyMappings&quot;:{&quot;UI5799653934564981aba65bacfbebb5a4&quot;:{&quot;DocumentTypeMappings&quot;:{&quot;RPAProjectCompany.HR.JobDescription&quot;:{&quot;FieldMappings&quot;:{&quot;RPAProjectCompany.HR.JobDescription.companyName&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.companyName&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.Email&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.Email&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.CUI&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.CUI&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.jobID&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.jobID&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.deadlineDate&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.deadlineDate&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.experience&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.experience&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.skills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.skills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.education&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.education&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.JobDescription.optionalSkills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.JobDescription.optionalSkills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true}},&quot;ExtractorDocumentTypeId&quot;:null},&quot;RPAProjectCompany.HR.CV&quot;:{&quot;FieldMappings&quot;:{&quot;RPAProjectCompany.HR.CV.name&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.name&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.phone&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.phone&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.email&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.email&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.website&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.website&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.jobID&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.jobID&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.experience&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.experience&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.skills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.skills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.education&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.education&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;RPAProjectCompany.HR.CV.optionalSkills&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;RPAProjectCompany.HR.CV.optionalSkills&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true}},&quot;ExtractorDocumentTypeId&quot;:null}}}},&quot;ExtractorMinimumConfidence&quot;:{&quot;UI5799653934564981aba65bacfbebb5a4&quot;:&quot;0&quot;},&quot;ExtractorsAliases&quot;:{},&quot;DocumentTypeOptionsByExtractor&quot;:{&quot;UI5799653934564981aba65bacfbebb5a4&quot;:[]}}">
       <p4:DataExtractionScope.Extractors>
         <p4:FormExtractor SerializedSignatureFields="{x:Null}" ApiKey="[Config(&quot;apiKey&quot;).ToString]" DisplayName="Form Extractor" Endpoint="https://du.uipath.com/svc/formextractor" sap:VirtualizedContainerService.HintSize="233.6,164" sap2010:WorkflowViewState.IdRef="FormExtractor_1" MinOverlapPercentage="65" PersistenceId="UI5799653934564981aba65bacfbebb5a4" SerializedSettings="{}{}" SerializedTemplates="[{&quot;DocumentTypeId&quot;:&quot;RPAProjectCompany.HR.JobDescription&quot;,&quot;FormId&quot;:&quot;dbe9133b&quot;,&quot;FormName&quot;:&quot;JD - Template&quot;,&quot;OriginalFileExtension&quot;:&quot;pdf&quot;,&quot;Pages&quot;:[{&quot;Page&quot;:0,&quot;Size&quot;:[0.0,0.0,612.0,792.0],&quot;SkewAngle&quot;:0.0,&quot;Evidence&quot;:[{&quot;Text&quot;:&quot;RPA&quot;,&quot;Box&quot;:[38.884,72.025,23.268,10.908]},{&quot;Text&quot;:&quot;Project&quot;,&quot;Box&quot;:[38.884,98.233,34.104,10.908]},{&quot;Text&quot;:&quot;Company&quot;,&quot;Box&quot;:[38.884,135.385,46.776,10.908]},{&quot;Text&quot;:&quot;Bucharest,&quot;,&quot;Box&quot;:[52.714,72.025,51.144,10.908]},{&quot;Text&quot;:&quot;Romania&quot;,&quot;Box&quot;:[52.714,126.169,43.296,10.908]},{&quot;Text&quot;:&quot;CUI&quot;,&quot;Box&quot;:[66.514,72.025,20.592,10.908]},{&quot;Text&quot;:&quot;J256983&quot;,&quot;Box&quot;:[66.514,95.617,40.608,10.908]},{&quot;Text&quot;:&quot;rpa_project@outlook.com&quot;,&quot;Box&quot;:[80.304,72.025,126.036,10.908]},{&quot;Text&quot;:&quot;JOB&quot;,&quot;Box&quot;:[124.906,251.28,23.388,10.716]},{&quot;Text&quot;:&quot;DESCRIPTION&quot;,&quot;Box&quot;:[124.906,277.668,83.04,10.716]}],&quot;Fields&quot;:[{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.companyName&quot;,&quot;Box&quot;:[204.1492,140.1287,199.6723,32.2341]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.Email&quot;,&quot;Box&quot;:[236.3833,144.6057,193.4045,31.7864]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.CUI&quot;,&quot;Box&quot;:[292.3453,133.4133,204.5969,35.8157]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.jobID&quot;,&quot;Box&quot;:[356.3658,153.1119,185.346,34.4726]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.deadlineDate&quot;,&quot;Box&quot;:[422.6247,158.4843,197.8815,29.9956]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.experience&quot;,&quot;Box&quot;:[482.1683,170.1244,184.0029,35.8157]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.skills&quot;,&quot;Box&quot;:[514.5328,139.4142,445.4164,29.5369]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.education&quot;,&quot;Box&quot;:[547.6141,166.5881,415.8795,25.9925]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.JobDescription.optionalSkills&quot;,&quot;Box&quot;:[577.7418,185.4917,399.3389,38.398]}],&quot;Tables&quot;:[]}],&quot;AnchorBasedConfiguration&quot;:{&quot;AnchorBasedFieldConfiguration&quot;:[]}},{&quot;DocumentTypeId&quot;:&quot;RPAProjectCompany.HR.CV&quot;,&quot;FormId&quot;:&quot;1bb69983&quot;,&quot;FormName&quot;:&quot;CV - Template&quot;,&quot;OriginalFileExtension&quot;:&quot;pdf&quot;,&quot;Pages&quot;:[{&quot;Page&quot;:0,&quot;Size&quot;:[0.0,0.0,612.0,792.0],&quot;SkewAngle&quot;:0.0,&quot;Evidence&quot;:[{&quot;Text&quot;:&quot;RPA&quot;,&quot;Box&quot;:[38.884,72.025,23.268,10.908]},{&quot;Text&quot;:&quot;Project&quot;,&quot;Box&quot;:[38.884,98.233,34.104,10.908]},{&quot;Text&quot;:&quot;Company&quot;,&quot;Box&quot;:[38.884,135.385,46.776,10.908]},{&quot;Text&quot;:&quot;Bucharest,&quot;,&quot;Box&quot;:[52.714,72.025,51.144,10.908]},{&quot;Text&quot;:&quot;Romania&quot;,&quot;Box&quot;:[52.714,126.169,43.296,10.908]},{&quot;Text&quot;:&quot;CUI&quot;,&quot;Box&quot;:[66.514,72.025,20.592,10.908]},{&quot;Text&quot;:&quot;J256983&quot;,&quot;Box&quot;:[66.514,95.617,40.608,10.908]},{&quot;Text&quot;:&quot;rpa_project@outlook.com&quot;,&quot;Box&quot;:[80.304,72.025,126.036,10.908]},{&quot;Text&quot;:&quot;CV&quot;,&quot;Box&quot;:[124.906,297.3,17.264,10.716]}],&quot;Fields&quot;:[{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.name&quot;,&quot;Box&quot;:[210.5971,143.2419,293.6684,24.2478]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.phone&quot;,&quot;Box&quot;:[241.1314,146.8342,286.9329,22.0027]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.email&quot;,&quot;Box&quot;:[272.1147,142.3439,294.5665,26.9421]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.website&quot;,&quot;Box&quot;:[304.4452,280.1974,320.6104,24.6969]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.jobID&quot;,&quot;Box&quot;:[330.0402,155.3658,428.8277,30.0853]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.experience&quot;,&quot;Box&quot;:[391.1088,167.9388,411.7644,25.1459]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.skills&quot;,&quot;Box&quot;:[424.3373,138.3025,445.891,22.9007]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.education&quot;,&quot;Box&quot;:[453.9736,164.7956,423.8883,28.7382]},{&quot;Field&quot;:&quot;RPAProjectCompany.HR.CV.optionalSkills&quot;,&quot;Box&quot;:[487.631,184.8613,404.0879,22.5152]}],&quot;Tables&quot;:[]}],&quot;AnchorBasedConfiguration&quot;:{&quot;AnchorBasedFieldConfiguration&quot;:[]}}]" Timeout="100000">
           <p4:FormExtractor.DocumentBounds>
-            <InArgument x:TypeArguments="p6:ResultsDocumentBounds">
-              <DelegateArgumentValue x:TypeArguments="p6:ResultsDocumentBounds">
-                <DelegateInArgument x:TypeArguments="p6:ResultsDocumentBounds" Name="DocumentBounds" />
+            <InArgument x:TypeArguments="p5:ResultsDocumentBounds">
+              <DelegateArgumentValue x:TypeArguments="p5:ResultsDocumentBounds">
+                <DelegateInArgument x:TypeArguments="p5:ResultsDocumentBounds" Name="DocumentBounds" />
               </DelegateArgumentValue>
             </InArgument>
           </p4:FormExtractor.DocumentBounds>
@@ -203,55 +204,50 @@
             </InArgument>
           </p4:FormExtractor.DocumentText>
           <p4:FormExtractor.ExtractorDocumentType>
-            <InArgument x:TypeArguments="p5:ExtractorDocumentType">
-              <DelegateArgumentValue x:TypeArguments="p5:ExtractorDocumentType">
-                <DelegateInArgument x:TypeArguments="p5:ExtractorDocumentType" Name="ExtractorDocumentType" />
+            <InArgument x:TypeArguments="p6:ExtractorDocumentType">
+              <DelegateArgumentValue x:TypeArguments="p6:ExtractorDocumentType">
+                <DelegateInArgument x:TypeArguments="p6:ExtractorDocumentType" Name="ExtractorDocumentType" />
               </DelegateArgumentValue>
             </InArgument>
           </p4:FormExtractor.ExtractorDocumentType>
           <p4:FormExtractor.ExtractorResult>
-            <OutArgument x:TypeArguments="p5:ExtractorResult">
-              <DelegateArgumentReference x:TypeArguments="p5:ExtractorResult">
-                <DelegateOutArgument x:TypeArguments="p5:ExtractorResult" Name="ExtractorResult" />
+            <OutArgument x:TypeArguments="p6:ExtractorResult">
+              <DelegateArgumentReference x:TypeArguments="p6:ExtractorResult">
+                <DelegateOutArgument x:TypeArguments="p6:ExtractorResult" Name="ExtractorResult" />
               </DelegateArgumentReference>
             </OutArgument>
           </p4:FormExtractor.ExtractorResult>
         </p4:FormExtractor>
       </p4:DataExtractionScope.Extractors>
     </p4:DataExtractionScope>
-    <p:PresentValidationStation AutomaticExtractionResults="[extractionResult]" DisplayName="Present Validation Station" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" sap:VirtualizedContainerService.HintSize="510.4,372" sap2010:WorkflowViewState.IdRef="PresentValidationStation_1" ShowOnlyRelevantPageRange="False" Taxonomy="[taxonomy]" ValidatedExtractionResults="[validatedExtractionResult]" />
-    <p4:ExportExtractionResults DataSet="[dataSet]" DisplayName="Export Extraction Results" ExtractionResult="[validatedExtractionResult]" sap:VirtualizedContainerService.HintSize="510.4,176.8" sap2010:WorkflowViewState.IdRef="ExportExtractionResults_1" IncludeConfidence="False" IncludeOCRConfidence="False" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510.4,595.2" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="475.2,516.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ForEach x:TypeArguments="sd:DataTable" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="433.6,424" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dataSet.Tables]">
-            <ui:ForEach.Body>
-              <ActivityAction x:TypeArguments="sd:DataTable">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="sd:DataTable" Name="table" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,299.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="tempDT" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:OutputDataTable DataTable="[table]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[tempDT]" />
-                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[tempDT]" />
-                </Sequence>
-              </ActivityAction>
-            </ui:ForEach.Body>
-          </ui:ForEach>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
+    <p:PresentValidationStation AutomaticExtractionResults="[extractionResult]" DisplayName="Present Validation Station" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" sap:VirtualizedContainerService.HintSize="477.6,372" sap2010:WorkflowViewState.IdRef="PresentValidationStation_1" ShowOnlyRelevantPageRange="False" Taxonomy="[taxonomy]" ValidatedExtractionResults="[validatedExtractionResult]" />
+    <p4:ExportExtractionResults DataSet="[dataSet]" DisplayName="Export Extraction Results" ExtractionResult="[validatedExtractionResult]" sap:VirtualizedContainerService.HintSize="477.6,176.8" sap2010:WorkflowViewState.IdRef="ExportExtractionResults_1" IncludeConfidence="False" IncludeOCRConfidence="False" />
+    <ui:ForEach x:TypeArguments="sd:DataTable" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="477.6,444.8" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dataSet.Tables]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="sd:DataTable">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataTable" Name="table" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="366.4,320" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="324.8,227.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="strT" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MergeDataTable Destination="[dataTable]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="283.2,134.4" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[table]" />
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
   </Sequence>
 </Activity>
