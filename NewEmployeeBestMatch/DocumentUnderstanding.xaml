@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>928,2726.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>928,2469.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DocumentUnderstanding_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -63,7 +63,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="68">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -98,6 +98,7 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -106,7 +107,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="DocumentUnderstanding" sap:VirtualizedContainerService.HintSize="519.2,2661.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DocumentUnderstanding" sap:VirtualizedContainerService.HintSize="519.2,2404.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="p7:DocumentTaxonomy" Name="taxonomy" />
       <Variable x:TypeArguments="x:String" Name="documentText" />
@@ -222,32 +223,6 @@
     </p4:DataExtractionScope>
     <p:PresentValidationStation AutomaticExtractionResults="[extractionResult]" DisplayName="Present Validation Station" DocumentObjectModel="[DOM]" DocumentPath="[documentPath]" DocumentText="[documentText]" sap:VirtualizedContainerService.HintSize="477.6,372" sap2010:WorkflowViewState.IdRef="PresentValidationStation_1" ShowOnlyRelevantPageRange="False" Taxonomy="[taxonomy]" ValidatedExtractionResults="[validatedExtractionResult]" />
     <p4:ExportExtractionResults DataSet="[dataSet]" DisplayName="Export Extraction Results" ExtractionResult="[validatedExtractionResult]" sap:VirtualizedContainerService.HintSize="477.6,176.8" sap2010:WorkflowViewState.IdRef="ExportExtractionResults_1" IncludeConfidence="False" IncludeOCRConfidence="False" />
-    <ui:ForEach x:TypeArguments="sd:DataTable" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="477.6,444.8" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dataSet.Tables]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="sd:DataTable">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataTable" Name="table" />
-          </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="366.4,320" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="324.8,227.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="strT" />
-              </Sequence.Variables>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:MergeDataTable Destination="[dataTable]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="283.2,134.4" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[table]" />
-            </Sequence>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[dataSet.Tables(0).Rows(0).ItemArray]" DataTable="[dataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="477.6,188" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
   </Sequence>
 </Activity>

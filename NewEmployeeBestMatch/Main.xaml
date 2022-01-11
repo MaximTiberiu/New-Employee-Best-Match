@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="986.4,890.4" sap2010:WorkflowViewState.IdRef="Main1_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="928,1066.4" sap2010:WorkflowViewState.IdRef="Main1_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
       <x:String>System.Activities</x:String>
@@ -55,7 +55,6 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.DocumentUnderstanding.ML.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -84,9 +83,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID13</x:Reference>
+      <x:Reference>__ReferenceID11</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID13">
+    <FlowStep x:Name="__ReferenceID11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">320,127.6</av:Point>
@@ -162,21 +161,11 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract All Data From Jobs Directory" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ExtractDataFromFiles.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="folderPath">
-                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;jobDownloadPath&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">
-                                <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="indexFolderPath">
-                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;jobFolderPath&quot;).ToString" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:Int32" x:Key="cvOrJob">
-                                <Literal x:TypeArguments="x:Int32" />
-                              </InArgument>
-                              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dataTable">
-                                <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="jobDataTable" />
-                              </OutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="folderPath">[Config("jobDownloadPath").ToString]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">[Config]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="indexFolderPath">[Config("jobFolderPath").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="cvOrJob">0</InArgument>
+                              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dataTable">[jobDataTable]</OutArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -195,21 +184,11 @@
                               </sap:WorkflowViewStateService.ViewState>
                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract All Data From CVs Directory" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="ExtractDataFromFiles.xaml">
                                 <ui:InvokeWorkflowFile.Arguments>
-                                  <InArgument x:TypeArguments="x:String" x:Key="folderPath">
-                                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;cvDownloadPath&quot;).ToString" />
-                                  </InArgument>
-                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">
-                                    <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-                                  </InArgument>
-                                  <InArgument x:TypeArguments="x:String" x:Key="indexFolderPath">
-                                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;cvFolderPath&quot;).ToString" />
-                                  </InArgument>
-                                  <InArgument x:TypeArguments="x:Int32" x:Key="cvOrJob">
-                                    <Literal x:TypeArguments="x:Int32" Value="1" />
-                                  </InArgument>
-                                  <OutArgument x:TypeArguments="sd:DataTable" x:Key="dataTable">
-                                    <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="cvDataTable" />
-                                  </OutArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="folderPath">[Config("cvDownloadPath").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">[Config]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="indexFolderPath">[Config("cvFolderPath").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:Int32" x:Key="cvOrJob">1</InArgument>
+                                  <OutArgument x:TypeArguments="sd:DataTable" x:Key="dataTable">[cvDataTable]</OutArgument>
                                 </ui:InvokeWorkflowFile.Arguments>
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -223,7 +202,7 @@
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:Point x:Key="ShapeLocation">130.4,761.6</av:Point>
                                       <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-                                      <av:PointCollection x:Key="ConnectorLocation">230.4,814.4 230.4,864.4</av:PointCollection>
+                                      <av:PointCollection x:Key="ConnectorLocation">330.4,788 380.4,788</av:PointCollection>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <ui:OutputDataTable DataTable="[cvDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[testString]">
@@ -234,88 +213,52 @@
                                     </sap:WorkflowViewStateService.ViewState>
                                   </ui:OutputDataTable>
                                   <FlowStep.Next>
-                                    <FlowStep x:Name="__ReferenceID11">
+                                    <FlowStep x:Name="__ReferenceID8">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <av:Point x:Key="ShapeLocation">130.4,864.4</av:Point>
+                                          <av:Point x:Key="ShapeLocation">380.4,761.6</av:Point>
                                           <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-                                          <av:PointCollection x:Key="ConnectorLocation">330.4,890.8 360.4,890.8 360.4,891.22 380.4,891.22</av:PointCollection>
+                                          <av:PointCollection x:Key="ConnectorLocation">580.4,788 610.4,788 610.4,780 630,780</av:PointCollection>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:RemoveDuplicateRows OutputDataTable="{x:Null}" DataTable="[cvDataTable]" DisplayName="Remove Duplicate Rows" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="RemoveDuplicateRows_1">
+                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[testString]">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                      </ui:RemoveDuplicateRows>
+                                      </ui:MessageBox>
                                       <FlowStep.Next>
-                                        <FlowStep x:Name="__ReferenceID12">
+                                        <FlowStep x:Name="__ReferenceID9">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <av:Point x:Key="ShapeLocation">380.4,864.82</av:Point>
+                                              <av:Point x:Key="ShapeLocation">630,753.6</av:Point>
                                               <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-                                              <av:PointCollection x:Key="ConnectorLocation">480.4,864.82 480.4,834.82 490.4,834.82 490.4,824.82</av:PointCollection>
+                                              <av:PointCollection x:Key="ConnectorLocation">730,806.4 730,836.4 670,836.4 670,893.6</av:PointCollection>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <ui:RemoveDuplicateRows OutputDataTable="{x:Null}" DataTable="[jobDataTable]" DisplayName="Remove Duplicate Rows" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="RemoveDuplicateRows_2">
+                                          <ui:OutputDataTable DataTable="[jobDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[testString1]">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                          </ui:RemoveDuplicateRows>
+                                          </ui:OutputDataTable>
                                           <FlowStep.Next>
-                                            <FlowStep x:Name="__ReferenceID8">
+                                            <FlowStep x:Name="__ReferenceID10">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <av:Point x:Key="ShapeLocation">390.4,772.02</av:Point>
+                                                  <av:Point x:Key="ShapeLocation">570,893.6</av:Point>
                                                   <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-                                                  <av:PointCollection x:Key="ConnectorLocation">590.4,798.42 620.4,798.42 620.4,788.84 630.4,788.84</av:PointCollection>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[testString]">
+                                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[testString1]">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
                                               </ui:MessageBox>
-                                              <FlowStep.Next>
-                                                <FlowStep x:Name="__ReferenceID9">
-                                                  <sap:WorkflowViewStateService.ViewState>
-                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                      <av:Point x:Key="ShapeLocation">630.4,762.44</av:Point>
-                                                      <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-                                                      <av:PointCollection x:Key="ConnectorLocation">730.4,815.24 730.4,865.24</av:PointCollection>
-                                                    </scg:Dictionary>
-                                                  </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:OutputDataTable DataTable="[jobDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[testString1]">
-                                                    <sap:WorkflowViewStateService.ViewState>
-                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                      </scg:Dictionary>
-                                                    </sap:WorkflowViewStateService.ViewState>
-                                                  </ui:OutputDataTable>
-                                                  <FlowStep.Next>
-                                                    <FlowStep x:Name="__ReferenceID10">
-                                                      <sap:WorkflowViewStateService.ViewState>
-                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                          <av:Point x:Key="ShapeLocation">630.4,865.24</av:Point>
-                                                          <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-                                                        </scg:Dictionary>
-                                                      </sap:WorkflowViewStateService.ViewState>
-                                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[testString1]">
-                                                        <sap:WorkflowViewStateService.ViewState>
-                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                          </scg:Dictionary>
-                                                        </sap:WorkflowViewStateService.ViewState>
-                                                      </ui:MessageBox>
-                                                    </FlowStep>
-                                                  </FlowStep.Next>
-                                                </FlowStep>
-                                              </FlowStep.Next>
                                             </FlowStep>
                                           </FlowStep.Next>
                                         </FlowStep>
@@ -365,7 +308,5 @@
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
     <x:Reference>__ReferenceID10</x:Reference>
-    <x:Reference>__ReferenceID11</x:Reference>
-    <x:Reference>__ReferenceID12</x:Reference>
   </Flowchart>
 </Activity>
