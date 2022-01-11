@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>928,3116.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>928,3784</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GenerateEmployeeList_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="35">
@@ -49,7 +49,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="64">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -85,7 +85,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GenerateEmployeeList" sap:VirtualizedContainerService.HintSize="699.2,3052" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GenerateEmployeeList" sap:VirtualizedContainerService.HintSize="699.2,3719.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -93,21 +93,17 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Verify existence of folder" sap:VirtualizedContainerService.HintSize="657.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="VerifyExistingFolder.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="folderPath">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;employeesListsPath&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">
-          <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="folderPath">[Config("employeesListsPath").ToString]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">[Config]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[jobDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="657.6,2805.6" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[jobDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="657.6,3472.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="jobCurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="624,2684.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="624,3352" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="companyEmail" />
               <Variable x:TypeArguments="x:String" Name="jobID" />
@@ -116,15 +112,17 @@
               <Variable x:TypeArguments="s:String[]" Name="skills" />
               <Variable x:TypeArguments="s:String[]" Name="optionalSkills" />
               <Variable x:TypeArguments="x:String" Name="tempStr" />
+              <Variable x:TypeArguments="x:Int32" Name="experience" />
+              <Variable x:TypeArguments="x:String" Name="education" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="582.4,194.4" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="582.4,256.8" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
               <ui:MultipleAssign.AssignOperations>
-                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
                     <ui:AssignOperation.To>
                       <OutArgument x:TypeArguments="x:String">[companyEmail]</OutArgument>
@@ -157,39 +155,57 @@
                       <InArgument x:TypeArguments="s:String[]">[Split(jobCurrentRow("optionalSkills").ToString, ",")]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Int32">[experience]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(jobCurrentRow("experience").ToString.Split(" "c)(0))]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:String">[education]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:String">[jobCurrentRow("education").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
                 </scg:List>
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
-            <ui:BuildDataTable DataTable="[tempDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="582.4,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;phone&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;website&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;jobID&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;experience&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;skills&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;education&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;optionalSkills&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;matchScore&quot; msdata:Caption=&quot;&quot; type=&quot;xs:double&quot; default=&quot;0&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[cvDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="582.4,1394.4" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:BuildDataTable DataTable="[tempDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="582.4,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;phone&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;website&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;jobID&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;experience&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;skills&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;education&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;optionalSkills&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;matchScore&quot; msdata:Caption=&quot;&quot; type=&quot;xs:double&quot; default=&quot;0&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[cvDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="582.4,1964" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="cvCurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="548.8,1273.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="548.8,1843.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[cvCurrentRow(&quot;jobID&quot;).ToString = jobID]" sap:VirtualizedContainerService.HintSize="507.2,1180.8" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If Condition="[cvCurrentRow(&quot;jobID&quot;).ToString = jobID]" sap:VirtualizedContainerService.HintSize="507.2,1750.4" sap2010:WorkflowViewState.IdRef="If_1">
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="472,992" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence sap:VirtualizedContainerService.HintSize="472,1561.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="s:String[]" Name="employeeSkills" />
                             <Variable x:TypeArguments="x:Double" Name="matchScore" />
                             <Variable x:TypeArguments="s:String[]" Name="employeeOptionalSkills" />
                             <Variable x:TypeArguments="x:Double" Name="score" />
+                            <Variable x:TypeArguments="x:Int32" Name="employeeExperience" />
+                            <Variable x:TypeArguments="x:String" Name="employeeEducation" />
                           </Sequence.Variables>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="430.4,164" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="430.4,226.4" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
                             <ui:MultipleAssign.AssignOperations>
-                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
                                   <ui:AssignOperation.To>
                                     <OutArgument x:TypeArguments="x:Double">[matchScore]</OutArgument>
@@ -211,7 +227,23 @@
                                     <OutArgument x:TypeArguments="s:String[]">[employeeOptionalSkills]</OutArgument>
                                   </ui:AssignOperation.To>
                                   <ui:AssignOperation.Value>
-                                    <InArgument x:TypeArguments="s:String[]">[Split(jobCurrentRow("optionalSkills").ToString, ",")]</InArgument>
+                                    <InArgument x:TypeArguments="s:String[]">[Split(cvCurrentRow("optionalSkills").ToString, ",")]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[employeeExperience]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(cvCurrentRow("experience").ToString.Split(" "c)(0))]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[employeeEducation]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[cvCurrentRow("education").ToString]</InArgument>
                                   </ui:AssignOperation.Value>
                                 </ui:AssignOperation>
                               </scg:List>
@@ -219,18 +251,10 @@
                           </ui:MultipleAssign>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Compare Required Skills" sap:VirtualizedContainerService.HintSize="430.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CompareSkills.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <OutArgument x:TypeArguments="x:Double" x:Key="score">
-                                <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="score" />
-                              </OutArgument>
-                              <InArgument x:TypeArguments="s:String[]" x:Key="jobSkills">
-                                <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="skills" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="s:String[]" x:Key="employeeSkills">
-                                <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="employeeSkills" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:Double" x:Key="coef">
-                                <Literal x:TypeArguments="x:Double" Value="10" />
-                              </InArgument>
+                              <OutArgument x:TypeArguments="x:Double" x:Key="score">[score]</OutArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="jobSkills">[skills]</InArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="employeeSkills">[employeeSkills]</InArgument>
+                              <InArgument x:TypeArguments="x:Double" x:Key="coef">10</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                           <Assign sap:VirtualizedContainerService.HintSize="430.4,60" sap2010:WorkflowViewState.IdRef="Assign_2">
@@ -243,21 +267,45 @@
                           </Assign>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Compare Optional Skills" sap:VirtualizedContainerService.HintSize="430.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CompareSkills.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <OutArgument x:TypeArguments="x:Double" x:Key="score">
-                                <mva:VisualBasicReference x:TypeArguments="x:Double" ExpressionText="score" />
-                              </OutArgument>
-                              <InArgument x:TypeArguments="s:String[]" x:Key="jobSkills">
-                                <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="optionalSkills" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="s:String[]" x:Key="employeeSkills">
-                                <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="employeeOptionalSkills" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="x:Double" x:Key="coef">
-                                <Literal x:TypeArguments="x:Double" Value="20" />
-                              </InArgument>
+                              <OutArgument x:TypeArguments="x:Double" x:Key="score">[score]</OutArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="jobSkills">[optionalSkills]</InArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="employeeSkills">[employeeOptionalSkills]</InArgument>
+                              <InArgument x:TypeArguments="x:Double" x:Key="coef">20</InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                           <Assign sap:VirtualizedContainerService.HintSize="430.4,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">[matchScore]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">[matchScore + score]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CompareExperience workflow" sap:VirtualizedContainerService.HintSize="430.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="CompareExperience.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <OutArgument x:TypeArguments="x:Double" x:Key="score">[score]</OutArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="jobExperience">[experience]</InArgument>
+                              <InArgument x:TypeArguments="x:Double" x:Key="coef">5</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="employeeExperience">[employeeExperience]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="430.4,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Double">[matchScore]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Double">[matchScore + score]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CompareEducation workflow" sap:VirtualizedContainerService.HintSize="430.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="CompareEducation.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <OutArgument x:TypeArguments="x:Double" x:Key="score">[score]</OutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="jobEducation">[education]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="employeeEducation">[employeeEducation]</InArgument>
+                              <InArgument x:TypeArguments="x:Double" x:Key="coef">25</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="430.4,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:Double">[matchScore]</OutArgument>
                             </Assign.To>
@@ -282,8 +330,7 @@
                 </ActivityAction>
               </ui:ForEachRow.Body>
             </ui:ForEachRow>
-            <ui:OutputDataTable DataTable="[tempDataTable]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="582.4,80.8" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[tempStr]" />
-            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="582.4,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[tempStr]" />
+            <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="matchScore" DataTable="[tempDataTable]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="582.4,241.6" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Decending" OutputDataTable="[tempDataTable]" SortOrder="Descending" />
             <Assign sap:VirtualizedContainerService.HintSize="582.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[filePath]</OutArgument>
