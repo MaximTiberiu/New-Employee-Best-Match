@@ -37,7 +37,7 @@ There is a request from an HR company to create a process that would help with p
 
 ### Extra Requirements
 - [ ] Dynamic Selectors -> **+0.5 pt**;
-- [ ] Data Scraping -> **+0.5 pt**;
+- [x] Data Scraping -> **+0.5 pt**;
 - [x] Advanced exception handling -> **+1 pt**;
 - [x] Email automation -> **+0.5 pt**;
 - [x] Config file (Excel/JSON) -> **+0.5 pt**;
@@ -66,7 +66,7 @@ There is a request from an HR company to create a process that would help with p
 - Select the desired config file. If you do not have one, my recommendation is to use the default one from project folder (**./Data/Config.xlsx**). Change the email address used in Outlook in the config file.
 
 ## Status
-Project is: *under development*. 
+Project is: *finished*. 
 
 ## License
 >You can check out the full license [here](https://github.com/MaximTiberiu/New-Employee-Best-Match/blob/main/LICENSE).
