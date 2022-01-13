@@ -149,7 +149,7 @@
                 <InOutArgument x:TypeArguments="sd:DataTable" x:Key="dataTable">[dataTable]</InOutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;&lt;&quot; + System.DateTime.Now.ToString(“dd-MM-yyyy HH:mm:ss”) + &quot;&gt; &quot; + Config(&quot;logMessageMoveFile&quot;).ToString + file.ToString]">
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;&lt;&quot; + System.DateTime.Now.ToString(“dd-MM-yyyy HH:mm:ss”) + &quot;&gt; &quot; + Config(&quot;logMessageMoveFile&quot;).ToString + file.ToString]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
